@@ -1,0 +1,21 @@
+{
+  "data_manifests": [
+    {
+      "name": "Maryland 2021 NIBRS Crime Database - FBI",
+      "type": "relational_database",
+      "source": "https://cde.ucr.cjis.gov/LATEST/webapp/#/pages/downloads",
+      "date_added": "2023-04-01",
+      "last_fetched": "2023-04-01",
+      "path": "/data/crime_data.csv",
+      "ttl": "annual",
+      "key_column": "",
+      "description": "FBI's NIBRS data for Maryland in 2021; only contains agencies with full year data for 2021. In the heading for Crime Incident-Based Data by State, choose Maryland and 2021.",
+      "tags": [
+        {
+            "key": "type",
+            "value": "crime"
+        }
+      ]
+    }
+  ]
+}
