@@ -22,3 +22,16 @@ psql -U postgres -d nibrs_2021 -f postgres_setup.sql
 psql -U postgres -d nibrs_2021 -f postgres_load.sql
 ```
 6. Run all the queries in analysis/views.sql, and then run the queries in clearances.sql, which is the analysis done so far, focused on clearance rates by offense by county.
+
+# System design
+Crime data is standardized through NIBRS, and Census data is also standardized, but everything else may be. Thus we may need to create a means of summarizing local data into a standard national format.
+The presentation layer should be able to be run locally or from a static hosting service like CloudFront or Vercel.
+The presentation layer should rely on a consistent data access mechanism and should access pre-summarized data that it will actually use.
+Raw and processed data should also be made available to end users
+The presentation layer should display provenance for the data
+I have defined a manifest file for all raw data sources used
+Data must be cleaned, and then summarized, and when possible, merged with census tract IDs
+Raw data can come from CSVs when APIs are not available
+A service should exist that will push all the data including summaries to a destination, which may be local disk for local development/research, or to the production s3 bucket
+Eventually we will have a cron that will spin up a container, update the data that needs to be updated, and run the summarization and publishing process to the production bucket
+It is important for all data to be grouped by year in addition to geographical filters. This will allow us to draw historical views and also calculate trends
